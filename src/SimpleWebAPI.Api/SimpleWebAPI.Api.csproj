@@ -16,4 +16,12 @@
     <ProjectReference Include="..\SimpleWebAPI.Infrastructure\SimpleWebAPI.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\Shane\source\repos\SimpleWebAPI\src\SimpleWebAPI.Api\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\Shane\source\repos\SimpleWebAPI\src\SimpleWebAPI.Api\.editorconfig" />
+  </ItemGroup>
+
 </Project>
