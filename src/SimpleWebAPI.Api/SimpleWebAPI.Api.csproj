@@ -10,4 +10,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SimpleWebAPI.Application\SimpleWebAPI.Application.csproj" />
+    <ProjectReference Include="..\SimpleWebAPI.Contracts\SimpleWebAPI.Contracts.csproj" />
+    <ProjectReference Include="..\SimpleWebAPI.Infrastructure\SimpleWebAPI.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
