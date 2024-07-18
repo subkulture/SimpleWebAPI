@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleWebAPI", "SimpleWebAPI\SimpleWebAPI.csproj", "{FAE4E5BE-E645-45F0-BE39-87ED88F34CF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleWebAPI.Api", "src\SimpleWebAPI.Api\SimpleWebAPI.Api.csproj", "{FAE4E5BE-E645-45F0-BE39-87ED88F34CF8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleWebAPI.Application", "src\SimpleWebAPI.Application\SimpleWebAPI.Application.csproj", "{99371CF4-D113-48AE-929A-E48D88471771}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleWebAPI.Domain", "src\SimpleWebAPI.Domain\SimpleWebAPI.Domain.csproj", "{D0E7D0C8-873C-4BB4-960E-05457CADB6E3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleWebAPI.Infrastructure", "src\SimpleWebAPI.Infrastructure\SimpleWebAPI.Infrastructure.csproj", "{FC6BCF60-0325-445D-9622-2702A5B5E65B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleWebAPI.Contracts", "src\SimpleWebAPI.Contracts\SimpleWebAPI.Contracts.csproj", "{3B430458-A159-4C53-BC77-681E0B9C1F71}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +23,22 @@ Global
 		{FAE4E5BE-E645-45F0-BE39-87ED88F34CF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAE4E5BE-E645-45F0-BE39-87ED88F34CF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAE4E5BE-E645-45F0-BE39-87ED88F34CF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99371CF4-D113-48AE-929A-E48D88471771}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99371CF4-D113-48AE-929A-E48D88471771}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99371CF4-D113-48AE-929A-E48D88471771}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99371CF4-D113-48AE-929A-E48D88471771}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0E7D0C8-873C-4BB4-960E-05457CADB6E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0E7D0C8-873C-4BB4-960E-05457CADB6E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0E7D0C8-873C-4BB4-960E-05457CADB6E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0E7D0C8-873C-4BB4-960E-05457CADB6E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC6BCF60-0325-445D-9622-2702A5B5E65B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC6BCF60-0325-445D-9622-2702A5B5E65B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC6BCF60-0325-445D-9622-2702A5B5E65B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC6BCF60-0325-445D-9622-2702A5B5E65B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B430458-A159-4C53-BC77-681E0B9C1F71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B430458-A159-4C53-BC77-681E0B9C1F71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B430458-A159-4C53-BC77-681E0B9C1F71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B430458-A159-4C53-BC77-681E0B9C1F71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
