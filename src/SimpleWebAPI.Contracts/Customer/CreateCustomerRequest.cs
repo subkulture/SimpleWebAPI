@@ -1,10 +1,8 @@
 ﻿namespace SimpleWebAPI.Contracts.Customer
 {
-    public record CustomerResponse(
-        int Id,
+    public record CreateCustomerRequest(
         string FirstName,
         string Surname,
         string Email,
-        string MobileNumber,
-        int LoyaltyPoints);
+        string MobileNumber);
 }

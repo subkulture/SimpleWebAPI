@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SimpleWebAPI.Application.Common.Interfaces;
+using SimpleWebAPI.Contracts.Customer;
 using SimpleWebAPI.Domain.Customers;
 
 namespace SimpleWebAPI.Controllers
@@ -16,9 +17,17 @@ namespace SimpleWebAPI.Controllers
         }
 
         [HttpPost()]
-        public async Task<IActionResult> PostCustomer()
+        public async Task<IActionResult> PostCustomer(CreateCustomerRequest createCustomerRequest)
         {
-            await _customerService.CreateCustomer(new Domain.Customers.Customer());
+            var customer = new Customer()
+            {
+                Email = createCustomerRequest.Email,
+                FirstName = createCustomerRequest.FirstName,
+                Surname = createCustomerRequest.Surname,
+                MobileNumber = createCustomerRequest.MobileNumber
+
+            };
+            await _customerService.CreateCustomer(customer);
 
             return Ok();
         }
@@ -28,7 +37,7 @@ namespace SimpleWebAPI.Controllers
         {
             var result = await _customerService.GetCustomer(id);
 
-            return Ok();
+            return Ok(ToDto(result));
         }
 
         [HttpPut("{customerId}")]
@@ -46,5 +55,8 @@ namespace SimpleWebAPI.Controllers
 
             return Ok();
         }
+
+        private CustomerResponse ToDto(Customer customer) =>
+        new(customer.Id, customer.FirstName, customer.Surname, customer.Email, customer.MobileNumber, customer.LoyaltyPoints);
     }
 }
