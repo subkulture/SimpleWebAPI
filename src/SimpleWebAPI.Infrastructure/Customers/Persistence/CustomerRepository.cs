@@ -16,10 +16,12 @@ namespace SimpleWebAPI.Infrastructure.Customers.Persistence
         public async Task CreateCustomer(Customer customer)
         {
             await _CustomerDbContext.Customers.AddAsync(customer);
+            await _CustomerDbContext.SaveChangesAsync();
         }
 
         public async Task<Customer> GetCustomer(int id)
         {
+            var test = _CustomerDbContext.Customers.ToList();
             return await _CustomerDbContext.Customers.Where(x => x.Id == id).FirstAsync();
         }
 
