@@ -1,6 +1,6 @@
 ﻿using SimpleWebAPI.Application.Common.Interfaces;
 
-namespace SimpleWebAPI.Infrastructure.Customer.Persistence
+namespace SimpleWebAPI.Infrastructure.Customers.Persistence
 {
     public class CustomerRepository : ICustomerRepository
     {
