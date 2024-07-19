@@ -1,4 +1,5 @@
 ﻿using SimpleWebAPI.Application.Common.Interfaces;
+using SimpleWebAPI.Domain.Customers;
 
 namespace SimpleWebAPI.Application.Services
 {
@@ -10,24 +11,24 @@ namespace SimpleWebAPI.Application.Services
             _customerRepository = customerRepository;
         }
 
-        public Task<int> CreateCustomer()
+        public async Task CreateCustomer(Customer customer)
         {
-            throw new NotImplementedException();
+            await _customerRepository.CreateCustomer(customer);
         }
 
-        public Task<int> DeleteCustomer(int customerId)
+        public async Task DeleteCustomer(int id)
         {
-            throw new NotImplementedException();
+            await _customerRepository.DeleteCustomer(id);
         }
 
-        public Task<int> GetCustomer(int customerId)
+        public async Task<Customer> GetCustomer(int id)
         {
-            throw new NotImplementedException();
+            return await _customerRepository.GetCustomer(id);
         }
 
-        public Task<int> UpdateCustomer(int customerId)
+        public async Task UpdateCustomer(Customer customer)
         {
-            throw new NotImplementedException();
+            await _customerRepository.UpdateCustomer(customer);
         }
     }
 }

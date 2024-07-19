@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SimpleWebAPI.Application.Common.Interfaces;
+using SimpleWebAPI.Domain.Customers;
 
 namespace SimpleWebAPI.Controllers
 {
@@ -17,7 +18,7 @@ namespace SimpleWebAPI.Controllers
         [HttpPost()]
         public async Task<IActionResult> PostCustomer()
         {
-            var result = await _customerService.CreateCustomer();
+            await _customerService.CreateCustomer(new Domain.Customers.Customer());
 
             return Ok();
         }
@@ -31,9 +32,9 @@ namespace SimpleWebAPI.Controllers
         }
 
         [HttpPut("{customerId}")]
-        public async Task<IActionResult> PutCustomer(int id)
+        public async Task<IActionResult> PutCustomer(Customer customer)
         {
-            var result = await _customerService.UpdateCustomer(id);
+            await _customerService.UpdateCustomer(customer);
 
             return Ok();
         }
@@ -41,7 +42,7 @@ namespace SimpleWebAPI.Controllers
         [HttpDelete("{customerId}")]
         public async Task<IActionResult> DeleteCustomer(int id)
         {
-            var result = await _customerService.DeleteCustomer(id);
+            await _customerService.DeleteCustomer(id);
 
             return Ok();
         }

@@ -10,10 +10,5 @@ namespace SimpleWebAPI.Infrastructure.Common.Persistence
 
         public CustomerDBContext(DbContextOptions<CustomerDBContext> options)
             : base(options) { }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-
-        }
     }
 }
