@@ -12,5 +12,10 @@
         {
             throw new NotImplementedException();
         }
+
+        private bool IsMobileNumberValid()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
