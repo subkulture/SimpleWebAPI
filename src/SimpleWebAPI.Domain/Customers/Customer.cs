@@ -8,6 +8,11 @@
         public string? Email { get; set; }
         public string? MobileNumber { get; set; }
 
+        private bool IsNameValid()
+        {
+            throw new NotImplementedException();
+        }
+
         private bool IsEmailValid()
         {
             throw new NotImplementedException();
