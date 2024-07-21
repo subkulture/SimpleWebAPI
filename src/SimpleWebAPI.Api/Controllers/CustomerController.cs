@@ -17,16 +17,17 @@ namespace SimpleWebAPI.Controllers
         }
 
         [HttpPost()]
-        public async Task<IActionResult> PostCustomer(CreateCustomerRequest createCustomerRequest)
+        public async Task<IActionResult> PostCustomer(CustomerRequest customerRequest)
         {
             var customer = new Customer()
             {
-                Email = createCustomerRequest.Email,
-                FirstName = createCustomerRequest.FirstName,
-                Surname = createCustomerRequest.Surname,
-                MobileNumber = createCustomerRequest.MobileNumber
+                Email = customerRequest.Email,
+                FirstName = customerRequest.FirstName,
+                Surname = customerRequest.Surname,
+                MobileNumber = customerRequest.MobileNumber
 
             };
+
             await _customerService.CreateCustomer(customer);
 
             return NoContent();
@@ -41,8 +42,17 @@ namespace SimpleWebAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCustomer(Customer customer)
+        public async Task<IActionResult> PutCustomer(int id, CustomerRequest customerRequest)
         {
+            var customer = new Customer()
+            {
+                Id = id,
+                Email = customerRequest.Email,
+                FirstName = customerRequest.FirstName,
+                Surname = customerRequest.Surname,
+                MobileNumber = customerRequest.MobileNumber
+            };
+
             await _customerService.UpdateCustomer(customer);
 
             return NoContent();
@@ -57,6 +67,6 @@ namespace SimpleWebAPI.Controllers
         }
 
         private CustomerResponse ToDto(Customer customer) =>
-        new(customer.Id, customer.FirstName, customer.Surname, customer.Email, customer.MobileNumber, customer.LoyaltyPoints);
+        new(customer.Id, customer.FirstName, customer.Surname, customer.Email, customer.MobileNumber);
     }
 }

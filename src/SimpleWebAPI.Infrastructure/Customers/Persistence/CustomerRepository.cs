@@ -32,7 +32,6 @@ namespace SimpleWebAPI.Infrastructure.Customers.Persistence
             dbCustomer.FirstName = customer.FirstName;
             dbCustomer.Surname = customer.Surname;
             dbCustomer.MobileNumber = customer.MobileNumber;
-            dbCustomer.LoyaltyPoints = customer.LoyaltyPoints;
 
             await _CustomerDbContext.SaveChangesAsync();
         }

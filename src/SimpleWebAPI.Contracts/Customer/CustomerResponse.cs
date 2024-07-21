@@ -5,6 +5,5 @@
         string FirstName,
         string Surname,
         string Email,
-        string MobileNumber,
-        int LoyaltyPoints);
+        string MobileNumber);
 }

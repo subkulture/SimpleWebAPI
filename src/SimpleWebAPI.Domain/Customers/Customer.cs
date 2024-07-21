@@ -7,6 +7,5 @@
         public string Surname { get; set; }
         public string Email { get; set; }
         public string MobileNumber { get; set; }
-        public int LoyaltyPoints { get; set; }
     }
 }

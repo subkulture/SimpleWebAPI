@@ -1,6 +1,6 @@
 ﻿namespace SimpleWebAPI.Contracts.Customer
 {
-    public record CreateCustomerRequest(
+    public record CustomerRequest(
         string FirstName,
         string Surname,
         string Email,
