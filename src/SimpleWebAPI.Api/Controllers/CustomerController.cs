@@ -29,10 +29,10 @@ namespace SimpleWebAPI.Controllers
             };
             await _customerService.CreateCustomer(customer);
 
-            return Ok();
+            return NoContent();
         }
 
-        [HttpGet("{customerId}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetCustomer(int id)
         {
             var result = await _customerService.GetCustomer(id);
@@ -40,20 +40,20 @@ namespace SimpleWebAPI.Controllers
             return Ok(ToDto(result));
         }
 
-        [HttpPut("{customerId}")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> PutCustomer(Customer customer)
         {
             await _customerService.UpdateCustomer(customer);
 
-            return Ok();
+            return NoContent();
         }
 
-        [HttpDelete("{customerId}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCustomer(int id)
         {
             await _customerService.DeleteCustomer(id);
 
-            return Ok();
+            return NoContent();
         }
 
         private CustomerResponse ToDto(Customer customer) =>

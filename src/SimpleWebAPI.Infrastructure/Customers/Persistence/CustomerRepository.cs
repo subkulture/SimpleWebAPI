@@ -21,7 +21,6 @@ namespace SimpleWebAPI.Infrastructure.Customers.Persistence
 
         public async Task<Customer> GetCustomer(int id)
         {
-            var test = _CustomerDbContext.Customers.ToList();
             return await _CustomerDbContext.Customers.Where(x => x.Id == id).FirstAsync();
         }
 
@@ -40,7 +39,10 @@ namespace SimpleWebAPI.Infrastructure.Customers.Persistence
 
         public async Task DeleteCustomer(int id)
         {
-            await _CustomerDbContext.Customers.Where(x => x.Id == id).FirstAsync();
+            var customer = await _CustomerDbContext.Customers.Where(x => x.Id == id).FirstAsync();
+            _CustomerDbContext.Customers.Remove(customer);
+            await _CustomerDbContext.SaveChangesAsync();
+
         }
 
     }

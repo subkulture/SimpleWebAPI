@@ -10,5 +10,13 @@ namespace SimpleWebAPI.Infrastructure.Common.Persistence
 
         public CustomerDBContext(DbContextOptions<CustomerDBContext> options)
             : base(options) { }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Customer>(entity =>
+            {
+                entity.HasKey(x => x.Id);
+            });
+        }
     }
 }
