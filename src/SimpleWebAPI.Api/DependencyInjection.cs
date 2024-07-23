@@ -1,6 +1,6 @@
 namespace SimpleWebAPI;
 
-public static class ServiceCollectionExtensions
+public static class DependencyInjection
 {
     public static IServiceCollection AddPresentation(this IServiceCollection services)
     {

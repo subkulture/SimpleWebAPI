@@ -19,9 +19,9 @@ namespace SimpleWebAPI.Infrastructure.Customers.Persistence
             await _CustomerDbContext.SaveChangesAsync();
         }
 
-        public async Task<Customer> GetCustomer(int id)
+        public async Task<Customer?> GetCustomer(int id)
         {
-            return await _CustomerDbContext.Customers.Where(x => x.Id == id).FirstAsync();
+            return await _CustomerDbContext.Customers.Where(x => x.Id == id).FirstOrDefaultAsync();
         }
 
         public async Task UpdateCustomer(Customer customer)

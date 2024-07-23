@@ -1,4 +1,6 @@
-﻿using SimpleWebAPI.Application.Common.Interfaces;
+﻿using ErrorOr;
+using SimpleWebAPI.Application.Common.Interfaces;
+using SimpleWebAPI.Application.Validators;
 using SimpleWebAPI.Domain.Customers;
 
 namespace SimpleWebAPI.Application.Services
@@ -13,6 +15,15 @@ namespace SimpleWebAPI.Application.Services
 
         public async Task CreateCustomer(Customer customer)
         {
+            var customerValidator = new CustomerValidator();
+
+            var validationResult = await customerValidator.ValidateAsync(customer);
+
+            var errors = validationResult.Errors
+            .ConvertAll(error => Error.Validation(
+                code: error.PropertyName,
+                description: error.ErrorMessage));
+
             await _customerRepository.CreateCustomer(customer);
         }
 
@@ -21,9 +32,16 @@ namespace SimpleWebAPI.Application.Services
             await _customerRepository.DeleteCustomer(id);
         }
 
-        public async Task<Customer> GetCustomer(int id)
+        public async Task<ErrorOr<Customer>> GetCustomer(int id)
         {
-            return await _customerRepository.GetCustomer(id);
+            var customer = await _customerRepository.GetCustomer(id);
+
+            if (customer is null)
+            {
+                return Error.NotFound(description: "Customer not found");
+            }
+
+            return customer;
         }
 
         public async Task UpdateCustomer(Customer customer)

@@ -7,20 +7,5 @@
         public string? Surname { get; set; }
         public string? Email { get; set; }
         public string? MobileNumber { get; set; }
-
-        private bool IsNameValid()
-        {
-            throw new NotImplementedException();
-        }
-
-        private bool IsEmailValid()
-        {
-            throw new NotImplementedException();
-        }
-
-        private bool IsMobileNumberValid()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

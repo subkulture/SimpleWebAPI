@@ -1,3 +1,4 @@
+using CleanArchitecture.Api.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using SimpleWebAPI.Application.Common.Interfaces;
 using SimpleWebAPI.Contracts.Customer;
@@ -7,7 +8,7 @@ namespace SimpleWebAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CustomerController : ControllerBase
+    public class CustomerController : ApiController
     {
         private readonly ICustomerService _customerService;
 
@@ -38,7 +39,9 @@ namespace SimpleWebAPI.Controllers
         {
             var result = await _customerService.GetCustomer(id);
 
-            return Ok(ToDto(result));
+            return result.Match(
+                customer => Ok(ToDto(customer)),
+                Problem);
         }
 
         [HttpPut("{id}")]

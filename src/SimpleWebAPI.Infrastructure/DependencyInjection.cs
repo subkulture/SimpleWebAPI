@@ -6,7 +6,7 @@ using SimpleWebAPI.Infrastructure.Customers.Persistence;
 
 namespace SimpleWebAPI.Infrastructure
 {
-    public static class ServiceCollectionExtensions
+    public static class DependencyInjection
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
