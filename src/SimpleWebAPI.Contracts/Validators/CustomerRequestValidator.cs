@@ -1,11 +1,11 @@
 ﻿using FluentValidation;
-using SimpleWebAPI.Domain.Customers;
+using SimpleWebAPI.Contracts.Customer;
 
 namespace SimpleWebAPI.Application.Validators
 {
-    public class CustomerValidator : AbstractValidator<Customer>
+    public class CustomerRequestValidator : AbstractValidator<CustomerRequest>
     {
-        public CustomerValidator()
+        public CustomerRequestValidator()
         {
             RuleFor(customer => customer.FirstName).NotEmpty();
             RuleFor(customer => customer.Surname).NotEmpty();

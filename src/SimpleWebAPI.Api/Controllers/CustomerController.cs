@@ -1,6 +1,9 @@
 using CleanArchitecture.Api.Controllers;
+using ErrorOr;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using SimpleWebAPI.Application.Common.Interfaces;
+using SimpleWebAPI.Application.Validators;
 using SimpleWebAPI.Contracts.Customer;
 using SimpleWebAPI.Domain.Customers;
 
@@ -20,6 +23,20 @@ namespace SimpleWebAPI.Controllers
         [HttpPost()]
         public async Task<IActionResult> PostCustomer(CustomerRequest customerRequest)
         {
+            var customerRequestValidator = new CustomerRequestValidator();
+
+            ValidationResult? validationResult = await customerRequestValidator.ValidateAsync(customerRequest);
+
+            List<Error>? errors = validationResult.Errors
+            .ConvertAll(error => Error.Validation(
+                code: error.PropertyName,
+                description: error.ErrorMessage));
+
+            if (!validationResult.IsValid)
+            {
+                return Problem(errors);
+            }
+
             var customer = new Customer()
             {
                 Email = customerRequest.Email,

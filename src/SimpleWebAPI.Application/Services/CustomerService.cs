@@ -1,6 +1,5 @@
 ﻿using ErrorOr;
 using SimpleWebAPI.Application.Common.Interfaces;
-using SimpleWebAPI.Application.Validators;
 using SimpleWebAPI.Domain.Customers;
 
 namespace SimpleWebAPI.Application.Services
@@ -15,15 +14,6 @@ namespace SimpleWebAPI.Application.Services
 
         public async Task CreateCustomer(Customer customer)
         {
-            var customerValidator = new CustomerValidator();
-
-            var validationResult = await customerValidator.ValidateAsync(customer);
-
-            var errors = validationResult.Errors
-            .ConvertAll(error => Error.Validation(
-                code: error.PropertyName,
-                description: error.ErrorMessage));
-
             await _customerRepository.CreateCustomer(customer);
         }
 
