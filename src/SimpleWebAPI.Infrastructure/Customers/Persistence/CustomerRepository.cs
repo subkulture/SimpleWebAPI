@@ -5,13 +5,9 @@ using SimpleWebAPI.Infrastructure.Common.Persistence;
 
 namespace SimpleWebAPI.Infrastructure.Customers.Persistence
 {
-    public class CustomerRepository : ICustomerRepository
+    public class CustomerRepository(CustomerDBContext customerDBContext) : ICustomerRepository
     {
-        private readonly CustomerDBContext _CustomerDbContext;
-        public CustomerRepository(CustomerDBContext customerDBContext)
-        {
-            _CustomerDbContext = customerDBContext;
-        }
+        private readonly CustomerDBContext _CustomerDbContext = customerDBContext;
 
         public async Task CreateCustomer(Customer customer)
         {

@@ -4,13 +4,9 @@ using SimpleWebAPI.Domain.Customers;
 
 namespace SimpleWebAPI.Application.Services
 {
-    public class CustomerService : ICustomerService
+    public class CustomerService(ICustomerRepository customerRepository) : ICustomerService
     {
-        private readonly ICustomerRepository _customerRepository;
-        public CustomerService(ICustomerRepository customerRepository)
-        {
-            _customerRepository = customerRepository;
-        }
+        private readonly ICustomerRepository _customerRepository = customerRepository;
 
         public async Task CreateCustomer(Customer customer)
         {

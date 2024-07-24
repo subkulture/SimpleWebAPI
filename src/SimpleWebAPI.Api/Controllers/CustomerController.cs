@@ -1,6 +1,5 @@
 using CleanArchitecture.Api.Controllers;
 using ErrorOr;
-using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using SimpleWebAPI.Application.Common.Interfaces;
 using SimpleWebAPI.Application.Validators;
@@ -11,29 +10,22 @@ namespace SimpleWebAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CustomerController : ApiController
+    public class CustomerController(ICustomerService customerService) : ApiController
     {
-        private readonly ICustomerService _customerService;
-
-        public CustomerController(ICustomerService customerService)
-        {
-            _customerService = customerService;
-        }
+        private readonly ICustomerService _customerService = customerService;
 
         [HttpPost()]
         public async Task<IActionResult> PostCustomer(CustomerRequest customerRequest)
         {
             var customerRequestValidator = new CustomerRequestValidator();
-
-            ValidationResult? validationResult = await customerRequestValidator.ValidateAsync(customerRequest);
-
-            List<Error>? errors = validationResult.Errors
-            .ConvertAll(error => Error.Validation(
-                code: error.PropertyName,
-                description: error.ErrorMessage));
+            var validationResult = await customerRequestValidator.ValidateAsync(customerRequest);
 
             if (!validationResult.IsValid)
             {
+                List<Error>? errors = validationResult.Errors
+                .ConvertAll(error => Error.Validation(
+                    code: error.PropertyName,
+                    description: error.ErrorMessage));
                 return Problem(errors);
             }
 
@@ -64,6 +56,18 @@ namespace SimpleWebAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCustomer(int id, CustomerRequest customerRequest)
         {
+            var customerRequestValidator = new CustomerRequestValidator();
+            var validationResult = await customerRequestValidator.ValidateAsync(customerRequest);
+
+            if (!validationResult.IsValid)
+            {
+                List<Error>? errors = validationResult.Errors
+                .ConvertAll(error => Error.Validation(
+                    code: error.PropertyName,
+                    description: error.ErrorMessage));
+                return Problem(errors);
+            }
+
             var customer = new Customer()
             {
                 Id = id,
@@ -86,7 +90,7 @@ namespace SimpleWebAPI.Controllers
             return NoContent();
         }
 
-        private CustomerResponse ToDto(Customer customer) =>
+        private static CustomerResponse ToDto(Customer customer) =>
         new(customer.Id, customer.FirstName, customer.Surname, customer.Email, customer.MobileNumber);
     }
 }

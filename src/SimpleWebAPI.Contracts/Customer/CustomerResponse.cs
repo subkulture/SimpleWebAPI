@@ -2,8 +2,8 @@
 {
     public record CustomerResponse(
         int Id,
-        string FirstName,
-        string Surname,
-        string Email,
-        string MobileNumber);
+        string? FirstName,
+        string? Surname,
+        string? Email,
+        string? MobileNumber);
 }
