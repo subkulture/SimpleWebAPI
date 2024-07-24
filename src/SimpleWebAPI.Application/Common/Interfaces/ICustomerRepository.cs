@@ -1,12 +1,13 @@
-﻿using SimpleWebAPI.Domain.Customers;
+﻿using ErrorOr;
+using SimpleWebAPI.Domain.Customers;
 
 namespace SimpleWebAPI.Application.Common.Interfaces
 {
     public interface ICustomerRepository
     {
         public Task CreateCustomer(Customer customer);
-        public Task<Customer?> GetCustomer(int id);
-        public Task UpdateCustomer(Customer customer);
-        public Task DeleteCustomer(int id);
+        public Task<ErrorOr<Customer>> GetCustomer(int id);
+        public Task<ErrorOr<Updated>> UpdateCustomer(Customer customer);
+        public Task<ErrorOr<Deleted>> DeleteCustomer(int id);
     }
 }

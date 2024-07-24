@@ -5,9 +5,9 @@ namespace SimpleWebAPI.Application.Common.Interfaces
 {
     public interface ICustomerService
     {
-        Task CreateCustomer(Customer customer);
+        Task<ErrorOr<Created>> CreateCustomer(Customer customer);
         Task<ErrorOr<Customer>> GetCustomer(int customerId);
-        Task UpdateCustomer(Customer customer);
-        Task DeleteCustomer(int customerId);
+        Task<ErrorOr<Updated>> UpdateCustomer(Customer customer);
+        Task<ErrorOr<Deleted>> DeleteCustomer(int customerId);
     }
 }

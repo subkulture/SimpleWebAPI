@@ -8,31 +8,37 @@ namespace SimpleWebAPI.Application.Services
     {
         private readonly ICustomerRepository _customerRepository = customerRepository;
 
-        public async Task CreateCustomer(Customer customer)
+        public async Task<ErrorOr<Created>> CreateCustomer(Customer customer)
         {
             await _customerRepository.CreateCustomer(customer);
+
+            return Result.Created;
         }
 
-        public async Task DeleteCustomer(int id)
+        public async Task<ErrorOr<Deleted>> DeleteCustomer(int id)
         {
-            await _customerRepository.DeleteCustomer(id);
+            var result = await _customerRepository.DeleteCustomer(id);
+
+            if (result.IsError)
+            {
+                return result.Errors;
+            }
+
+            return Result.Deleted;
         }
 
         public async Task<ErrorOr<Customer>> GetCustomer(int id)
         {
             var customer = await _customerRepository.GetCustomer(id);
 
-            if (customer is null)
-            {
-                return Error.NotFound(description: "Customer not found");
-            }
-
             return customer;
         }
 
-        public async Task UpdateCustomer(Customer customer)
+        public async Task<ErrorOr<Updated>> UpdateCustomer(Customer customer)
         {
             await _customerRepository.UpdateCustomer(customer);
+
+            return Result.Updated;
         }
     }
 }

@@ -85,9 +85,12 @@ namespace SimpleWebAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCustomer(int id)
         {
-            await _customerService.DeleteCustomer(id);
+            var result = await _customerService.DeleteCustomer(id);
 
-            return NoContent();
+
+            return result.Match(
+                _ => NoContent(),
+                Problem);
         }
 
         private static CustomerResponse ToDto(Customer customer) =>
